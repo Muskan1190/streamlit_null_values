@@ -10,7 +10,7 @@ filee = st.file_uploader("Choose a CSV file", type=["csv"])
 
 if filee is not None:
     file = pd.read_csv(filee)  # Use your variable name `file`
-    st.subheader("Original Data")
+    st.subheader("📋 Original Data")
     st.dataframe(file)
     
     option = st.selectbox(
@@ -25,4 +25,10 @@ if filee is not None:
         if (option =="Mode"):
             file.fillna((file.mode().iloc[0]),inplace = True)
         
-    st.dataframe(file)
+    st.session_state.filled_data = df
+    st.success(f"Filled null values using: {option}")
+    
+    # Display the cleaned data (if available)
+    if "filled_data" in st.session_state:
+        st.subheader("Cleaned Data")
+        st.dataframe(st.session_state.filled_data)
