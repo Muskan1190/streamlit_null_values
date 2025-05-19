@@ -25,8 +25,8 @@ if filee is not None:
         if (option =="Mode"):
             file.fillna((file.mode().iloc[0]),inplace = True)
         
-    st.session_state.filled_data = df
-    st.success(f"Filled null values using: {option}")
+    st.session_state.filled_data = file
+    st.success(f"✅ Filled null values using: {option}")
     
     # Display the cleaned data (if available)
     if "filled_data" in st.session_state:
